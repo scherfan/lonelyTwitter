@@ -32,4 +32,9 @@ public class LonelyTweetModel {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+	
+	public String toString()
+	{
+		return new String(timestamp.toString() + " | " + text);
+	}
 }
