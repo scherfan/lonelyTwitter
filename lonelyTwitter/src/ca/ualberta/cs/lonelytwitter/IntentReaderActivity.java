@@ -1,14 +1,13 @@
 
 package ca.ualberta.cs.lonelytwitter;
 
-import android.os.Bundle;
-import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
 
 public class IntentReaderActivity extends Activity
 {
-
 	public static final String TEXT_KEY = "TEXT";
 	public static final String TRANSFORM_KEY = "TRANSFORM";
 
@@ -34,7 +33,10 @@ public class IntentReaderActivity extends Activity
 		mode = intent.getIntExtra(TRANSFORM_KEY, NORMAL);
 		text = transformText(text);
 		TextView widget = (TextView) findViewById(R.id.intentText);
-		widget.setText(text);
+		if(widget.getText().length() <= 0)
+			widget.setText("This is the default message");
+		else
+			widget.setText(text);
 	}
 
 	public String transformText(String text)

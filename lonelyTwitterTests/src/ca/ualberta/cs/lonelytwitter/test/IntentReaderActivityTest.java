@@ -66,7 +66,7 @@ public class IntentReaderActivityTest extends
 		assertEquals("test string", widget.getText());
 	}
 	
-	public void testReverseTextCopy()
+	public void testReverseText()
     {
 		Intent intent = new Intent();
 		intent.putExtra(IntentReaderActivity.TEXT_KEY, "test string");
@@ -77,8 +77,43 @@ public class IntentReaderActivityTest extends
 		assertEquals("gnirts tset", activity.getText());
     }
 	
-	public void testReveseText()
-	{
-		
+	public void testDefaultMessage() throws Throwable
+    {
+		getActivity();
+		runTestOnUiThread(new Runnable()
+		{
+			
+			@Override
+			public void run()
+			{
+				IntentReaderActivity activity = (IntentReaderActivity) getActivity();
+				TextView widget = (TextView) activity
+				        .findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText);
+				widget.setText("");
+			}
+		});
+		IntentReaderActivity activity = (IntentReaderActivity) getActivity();
+		TextView widget = (TextView) activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText);
+		assertEquals("This is the default message", widget.getText());
+    }
+	
+	public void testVisibleTextView() throws Throwable
+    {
+		getActivity();
+		runTestOnUiThread(new Runnable()
+		{
+			
+			@Override
+			public void run()
+			{
+				IntentReaderActivity activity = (IntentReaderActivity) getActivity();
+				TextView widget = (TextView) activity
+				        .findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText);
+				widget.setText("test string");
+			}
+		});
+		IntentReaderActivity activity = (IntentReaderActivity) getActivity();
+		TextView widget = (TextView) activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText);
+		assertOnScreen("test string", widget.getText());
     }
 }
